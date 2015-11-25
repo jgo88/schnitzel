@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import de.iteratec.schnitzel.common.model.Puzzle;
+import de.iteratec.schnitzel.common.model.PuzzleStep;
+
 public class SchnitzelMainActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +29,17 @@ public class SchnitzelMainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        testCreateClassesFromCommonProject();
+    }
+
+    private void testCreateClassesFromCommonProject() {
+        PuzzleStep puzzleStep = new PuzzleStep();
+        puzzleStep.setDescription("First puzzle step");
+
+        Puzzle puzzle = new Puzzle();
+        puzzle.setName("MyPuzzle, yay!");
+        puzzle.setFirstPuzzleStep(puzzleStep);
     }
 
     @Override
