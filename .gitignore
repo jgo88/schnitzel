@@ -1,3 +1,16 @@
+/.metadata
+/schnitzel-server/bin
+/schnitzel-common/bin
+/schnitzel-server/.gradle
+/schnitzel-common/.gradle
+/schnitzel-common/.settings
+/schnitzel-common/.classpath
+.settings
+
+
+
+
+
 *.class
 
 # Mobile Tools for Java (J2ME)

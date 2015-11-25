@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org/rich" xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<ui:remove>
+	<link rel="shortcut icon"  type="image/x-icon" href="#{resource['images/favicon.ico']}" />
+	<link rel="icon"  type="image/x-icon" href="#{resource['images/favicon.ico']}" />
+	<f:event listener="#{backingBean.checkAccess}" type="preRenderView" />
+	<ui:insert name="head" />
+	<h:outputStylesheet library="stylesheets" name="zehrgeldbuch.css" />
+	<h:outputStylesheet library="stylesheets" name="navigation.css" />
+	<h:outputStylesheet library="stylesheets" name="spezial.css" />
+	<h:outputStylesheet library="stylesheets" name="rf.css" />
+	</ui:remove>
+	<title>iteraSchnitzel test</title>
+</h:head>
+<h:body>
+Test-Met
+<ui:remove>
+<div id="inhalt">
+		<h:link outcome="index" title="Home">
+			<h:graphicImage library="images" name="header.png" alt="Top" style="margin-top: 4em" />
+		</h:link>
+		
+		<ui:include src="menu.xhtml" />
+
+		<br clear="left" />
+		<div style="width: 840px">
+			<hr />
+			<h:panelGroup id="userPanel" layout="block" style="float: right">
+				<h:form id="userForm">
+					<h:outputText rendered="#{login.username!=null and login.currentUser!=null and login.currentUser.name!=null}" value="Benutzer: #{login.username} (#{login.currentUser.name})" />
+					<h:outputText rendered="#{login.username!=null and (login.currentUser==null or login.currentUser.name==null)}" value="Benutzer: #{login.username}" />
+					<h:outputText rendered="#{login.username==null}" value="Benutzer: (nicht eingeloggt)"/> 
+					<h:panelGroup rendered="#{login.username!=null}"> | 
+					<h:commandButton value="LOGOUT" action="#{login.doLogout}" immediate="true" styleClass="button" style="margin-top:0px; " />
+					</h:panelGroup>
+				</h:form>
+			</h:panelGroup>
+			
+			<br />
+			<hr />
+			<hr style="border-style:solid;border-width:3px;border-color:#B60E0C;background-color:#B60E0C" />
+		</div>
+
+
+		<div id="body" style="margin-left: 19px;width:840px;">
+			<ui:insert name="workflow" />
+			<ui:insert name="body" />
+		</div>
+
+		<br clear="all" />
+
+	</div>
+	<div id="footer">
+			<hr />
+			| <h:link outcome="impressum" style="font:bold 11px Helvetica,Arial,sans-serif;color:rgb(175, 175, 175);">IMPRESSUM</h:link> |
+			<hr />
+		</div>
+
+	<!-- GLOBAL MESSAGES -->
+	<h:form id="globalMessage">
+		<rich:popupPanel id="globalMessagePopup" show="#{backingBean.numberOfGlobalMessages > 0}" width="600" autosized="true" domElementAttachment="form">
+			<f:facet name="header">
+				<h:outputText value="Information" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:commandButton value="X" style="margin-top: 2px">
+					<rich:componentControl target="globalMessagePopup" operation="hide" />
+				</h:commandButton>
+			</f:facet>
+			<rich:messages globalOnly="true" />
+		</rich:popupPanel>
+	</h:form>
+</ui:remove>
+	<!-- CONSUME REMAINING MESSAGES -->
+	<h:panelGroup style="display: none">
+		<h:messages />
+	</h:panelGroup>
+
+</h:body>
+</html>

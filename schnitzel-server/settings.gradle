@@ -1,0 +1,2 @@
+include ':schnitzel-common'
+project(':schnitzel-common').projectDir = new File(settingsDir, '../schnitzel-common')
