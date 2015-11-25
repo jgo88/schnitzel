@@ -29,13 +29,14 @@ public class SchnitzelService {
 	@Autowired
 	private PuzzleStepBA puzzleStepBA;
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private BeaconBA beaconBA;
 	
 	@GET
-	@Path("/met")
+	@Path("/maria")
 	public Response getSchnitzel() {
-		return Response.status(200).entity("SUCCESS! :)").build();
+		return Response.status(200).entity("2").build();
 	}
 	
 	@GET

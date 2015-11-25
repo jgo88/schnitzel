@@ -5,10 +5,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 	version="2.1">
 
-	<!--<factory>
-		<exception-handler-factory>at.rkwn.zehrgeldbuch.jsf.util.JsfExceptionHandlerFactory
+	<factory>
+		<exception-handler-factory>de.iteratec.schnitzel.server.jsf.util.JsfExceptionHandlerFactory
 		</exception-handler-factory>
-	</factory> -->
+	</factory>
 
 	<navigation-rule>
 		<from-view-id>*</from-view-id>

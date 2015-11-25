@@ -27,7 +27,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="persistenceXmlLocation" value="META-INF/persistence.xml" />
+		<property name="persistenceXmlLocation" value="WEB-INF/persistence.xml" />
 		<property name="persistenceUnitName" value="pu" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

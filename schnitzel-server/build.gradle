@@ -1,6 +1,5 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'jetty'
 apply plugin: 'com.bmuschko.tomcat'
 
 group = 'de.iteratec.schnitzel'
@@ -50,12 +49,12 @@ dependencies {
     compile 'com.mchange:c3p0:0.9.5-pre6'
     
     compile 'jstl:jstl:1.2'
+	providedCompile 'javax.servlet:servlet-api:2.5'
     
     compile 'com.sun.jersey:jersey-server:1.8'
     compile 'com.sun.jersey:jersey-json:1.8'
     compile 'com.sun.jersey.contribs:jersey-spring:1.8'
     
-    compile 'javax.servlet.jsp:jsp-api:2.2'
     compile 'org.apache.myfaces.core:myfaces-impl:2.1.8'
 	compile 'org.richfaces.ui:richfaces-components-ui:4.2.3.Final'
 	compile 'org.richfaces.core:richfaces-core-impl:4.2.3.Final'
