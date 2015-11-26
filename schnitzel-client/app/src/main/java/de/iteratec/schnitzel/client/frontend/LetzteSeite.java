@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import de.iteratec.schnitzel.client.R;
-import de.iteratec.schnitzel.client.frontend.SchnitzelMainActivity;
 
 public class LetzteSeite extends AppCompatActivity implements View.OnClickListener{
     ImageView smileImage;
@@ -26,5 +25,6 @@ public class LetzteSeite extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         Intent intent = new Intent(this, SchnitzelMainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -96,12 +96,13 @@ public class NexttargetActivity extends Activity implements Observer{
             setCurrentPosition(pos);
             setUserIconPosition(user);
 
-            if(currentPos < 0.6 && currentPuzzleStep.getSuccessor() == null) {
+            if(currentPos < 0.5 && currentPuzzleStep.getSuccessor() == null) {
                 // endgültiges ziel erreicht -> letzte seite anzeigen
+                bf.stopBeaconSearch();
                 Intent intent = new Intent(this, LetzteSeite.class);
                 startActivity(intent);
                 finish();
-            } else if (currentPos < 0.6) {
+            } else if (currentPos < 0.5) {
                 // zwischenziel erreicht
                 // dialog einblenden mit tipp, wo das nächste ziel ist
                 // currentpos reseten
