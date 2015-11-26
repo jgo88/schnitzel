@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.iteratec.schnitzel.client.R;
@@ -28,28 +29,18 @@ public class SchnitzelMainActivity extends AppCompatActivity {
        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<Puzzle> puzzlelist = testCreateClassesFromCommonProject();
+        List<Puzzle> puzzlelist = new ArrayList<>();
+        try {
+            puzzlelist = RESTClient.getPuzzles();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ListView listview = (ListView) findViewById(R.id.listView);
-        listview.setAdapter(new PuzzleAdapter(getApplicationContext(),-1,puzzlelist.toArray(new Puzzle[puzzlelist.size()])));
+        listview.setAdapter(new PuzzleAdapter(getApplicationContext(), -1, puzzlelist.toArray(new Puzzle[puzzlelist.size()])));
     }
 
-    private ArrayList<Puzzle> testCreateClassesFromCommonProject() {
-        PuzzleStep puzzleStep = new PuzzleStep();
-        puzzleStep.setDescription("First puzzle step");
-
-        Puzzle puzzle = new Puzzle();
-        puzzle.setName("MyPuzzle, yay!");
-        puzzle.setFirstPuzzleStep(puzzleStep);
-
-        Puzzle puzzle1 = new Puzzle();
-        puzzle1.setName("MyPuzzle,Teil 2 yay!");
-        puzzle1.setFirstPuzzleStep(null);
-
-        ArrayList<Puzzle> puzzlelist = new ArrayList<>();
-        puzzlelist.add(puzzle);
-        puzzlelist.add(puzzle1);
-        return puzzlelist;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

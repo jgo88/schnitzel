@@ -1,4 +1,4 @@
-package de.iteratec.schnitzel.client;
+package de.iteratec.schnitzel.client.frontend;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import de.iteratec.schnitzel.client.R;
+import de.iteratec.schnitzel.client.frontend.SchnitzelMainActivity;
+
 public class LetzteSeite extends AppCompatActivity implements View.OnClickListener{
     ImageView smileImage;
     Button zurueckButton;
@@ -20,7 +23,7 @@ public class LetzteSeite extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.content_letzte_seite);
         smileImage = (ImageView)findViewById(R.id.imageView);
         zurueckButton = (Button)findViewById(R.id.zurueck_button);
-        smileImage.setImageResource(R.drawable.smile_top_img);
+        smileImage.setImageResource(R.drawable.smile_img);
         zurueckButton.setOnClickListener(this);
     }
 
