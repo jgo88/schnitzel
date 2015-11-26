@@ -1,8 +1,10 @@
-package de.iteratec.schnitzel.client;
+package de.iteratec.schnitzel.client.frontend;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import de.iteratec.schnitzel.client.R;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -20,12 +22,10 @@ public class NexttargetActivity extends Activity {
 
         setContentView(R.layout.activity_nexttarget);
 
-        backgroundView = (ImageView) findViewById(R.id.iv_background);
-
 
     }
 
-    private void draw(){
+    private void setUserIconPosition(int posX, int posY){
 
     }
 

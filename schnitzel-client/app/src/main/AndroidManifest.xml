@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NexttargetActivity"
+            android:name=".frontend.NexttargetActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_nexttarget"
             android:theme="@style/FullscreenTheme" >

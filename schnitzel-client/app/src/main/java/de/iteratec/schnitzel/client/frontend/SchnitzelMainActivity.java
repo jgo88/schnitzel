@@ -12,6 +12,7 @@ import android.view.View;
 
 import java.util.concurrent.ExecutionException;
 
+import de.iteratec.schnitzel.client.R;
 import de.iteratec.schnitzel.client.communication.RESTClient;
 import de.iteratec.schnitzel.common.model.Puzzle;
 import de.iteratec.schnitzel.common.model.PuzzleStep;
