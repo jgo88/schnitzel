@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import de.iteratec.schnitzel.client.R;
@@ -26,34 +28,27 @@ public class SchnitzelMainActivity extends AppCompatActivity {
        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-       fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PuzzleStep step = null;
-                try {
-                    step = RESTClient.getFirstPuzzleStep(1l);
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Snackbar.make(view, step!=null? step.getDescription() : "PuzzleStep is NULL", Snackbar.LENGTH_LONG).show();
-
-            }
-        });
-
-        testCreateClassesFromCommonProject();
+        ArrayList<Puzzle> puzzlelist = testCreateClassesFromCommonProject();
+        ListView listview = (ListView) findViewById(R.id.listView);
+        listview.setAdapter(new PuzzleAdapter(getApplicationContext(),-1,puzzlelist.toArray(new Puzzle[puzzlelist.size()])));
     }
 
-    private void testCreateClassesFromCommonProject() {
+    private ArrayList<Puzzle> testCreateClassesFromCommonProject() {
         PuzzleStep puzzleStep = new PuzzleStep();
         puzzleStep.setDescription("First puzzle step");
 
         Puzzle puzzle = new Puzzle();
         puzzle.setName("MyPuzzle, yay!");
         puzzle.setFirstPuzzleStep(puzzleStep);
+
+        Puzzle puzzle1 = new Puzzle();
+        puzzle1.setName("MyPuzzle,Teil 2 yay!");
+        puzzle1.setFirstPuzzleStep(null);
+
+        ArrayList<Puzzle> puzzlelist = new ArrayList<>();
+        puzzlelist.add(puzzle);
+        puzzlelist.add(puzzle1);
+        return puzzlelist;
     }
 
     @Override

@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import de.iteratec.schnitzel.client.frontend.SchnitzelMainActivity;
-
 public class LetzteSeite extends AppCompatActivity implements View.OnClickListener{
     ImageView smileImage;
     Button zurueckButton;

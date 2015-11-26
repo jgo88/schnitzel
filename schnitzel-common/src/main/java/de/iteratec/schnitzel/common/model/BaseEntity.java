@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class BaseEntity implements IEntity, Serializable {
@@ -16,7 +18,8 @@ public abstract class BaseEntity implements IEntity, Serializable {
 	private Long version;
 
 	@Id
-	@GeneratedValue(strategy = javax.persistence.GenerationType.TABLE)
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
 	@Basic(optional = false)
 	public Long getId() {
 		return id;
