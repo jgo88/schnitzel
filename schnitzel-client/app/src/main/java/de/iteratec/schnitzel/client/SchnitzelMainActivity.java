@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.concurrent.ExecutionException;
+
+import de.iteratec.schnitzel.client.communication.RESTClient;
 import de.iteratec.schnitzel.common.model.Puzzle;
 import de.iteratec.schnitzel.common.model.PuzzleStep;
 
@@ -25,8 +28,16 @@ public class SchnitzelMainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                PuzzleStep step = null;
+                try {
+                    step = RESTClient.getFirstPuzzleStep(1l);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Snackbar.make(view, step!=null? step.getDescription() : "PuzzleStep is NULL", Snackbar.LENGTH_LONG).show();
+
             }
         });
 
