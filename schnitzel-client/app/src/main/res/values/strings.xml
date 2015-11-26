@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SchnitzelClient</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_letzte_seite">LetzteSeite</string>
+    <string name="txtBegruessung">Herzlichen Glückwunsch!!! Ziel erreicht!</string>
+    <string name="smileBild">smile</string>
+    <string name="zurStartButton">zur Startseite</string>
 </resources>
