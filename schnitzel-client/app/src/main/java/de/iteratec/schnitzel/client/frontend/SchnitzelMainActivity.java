@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,12 +22,12 @@ import de.iteratec.schnitzel.common.model.Puzzle;
 import de.iteratec.schnitzel.common.model.PuzzleStep;
 
 public class SchnitzelMainActivity extends AppCompatActivity {
-
+    public static final String PUZZLESTEP = "iteraschnitzel";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schnitzel_main);
-       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         List<Puzzle> puzzlelist = new ArrayList<>();
@@ -39,8 +40,17 @@ public class SchnitzelMainActivity extends AppCompatActivity {
         }
         ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(new PuzzleAdapter(getApplicationContext(), -1, puzzlelist.toArray(new Puzzle[puzzlelist.size()])));
-    }
 
+        final List<Puzzle> finalpuzzlelist = puzzlelist;
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SchnitzelMainActivity.this, NexttargetActivity.class);
+                intent.putExtra(PUZZLESTEP, finalpuzzlelist.get(position).getFirstPuzzleStep());
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
