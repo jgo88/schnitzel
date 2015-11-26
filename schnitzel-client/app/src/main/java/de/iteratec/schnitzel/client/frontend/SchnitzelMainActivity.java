@@ -65,7 +65,7 @@ public class SchnitzelMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(this, NexttargetActivity.class);
+        Intent intent = new Intent(this, LetzteSeite.class);
         startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
