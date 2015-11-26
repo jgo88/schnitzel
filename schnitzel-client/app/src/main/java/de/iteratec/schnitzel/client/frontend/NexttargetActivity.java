@@ -42,7 +42,8 @@ public class NexttargetActivity extends Activity implements Observer{
         currentPuzzleStep = (PuzzleStep) intent.getSerializableExtra(SchnitzelMainActivity.PUZZLESTEP);
         currentTarget = currentPuzzleStep.getBeacon();
         BeaconFinder bf = new BeaconFinder();
-        bf.startBeaconSearch(this, currentTarget.getBeaconUuid(), getApplicationContext());
+        bf.addObserver(this);
+        bf.startBeaconSearch(this, currentTarget.getBeaconUuid(), this);
 
         setContentView(R.layout.activity_nexttarget);
         user = (ImageView) findViewById(R.id.iv_user);
@@ -69,18 +70,22 @@ public class NexttargetActivity extends Activity implements Observer{
 
     @Override
     public void update(Observable observable, Object o) {
-        //setCurrentPosition(o.getEntfernung);
+        double pos = (double) o;
 
-        if(currentPos < 0.03 && currentPuzzleStep.getSuccessor() == null) {
-            // endgültiges ziel erreicht -> letzte seite anzeigen
-            Intent intent = new Intent(this, LetzteSeite.class);
-            startActivity(intent);
-            finish();
-        } else if (currentPos < 0.03) {
-            // zwischenziel erreicht
-            // dialog einblenden mit tipp, wo das nächste ziel ist
-            // currentpos reseten
-            // currenttargetuuid setzen
+        if (pos != -1){
+            setCurrentPosition(pos/100);
+
+            if(currentPos < 0.03 && currentPuzzleStep.getSuccessor() == null) {
+                // endgültiges ziel erreicht -> letzte seite anzeigen
+                Intent intent = new Intent(this, LetzteSeite.class);
+                startActivity(intent);
+                finish();
+            } else if (currentPos < 0.03) {
+                // zwischenziel erreicht
+                // dialog einblenden mit tipp, wo das nächste ziel ist
+                // currentpos reseten
+                // currenttargetuuid setzen
+            }
         }
     }
 }
