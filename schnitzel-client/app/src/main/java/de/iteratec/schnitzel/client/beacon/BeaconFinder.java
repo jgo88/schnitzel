@@ -1,6 +1,5 @@
 package de.iteratec.schnitzel.client.beacon;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.UUID;
 
 
 public class BeaconFinder extends Observable {
@@ -26,7 +24,7 @@ public class BeaconFinder extends Observable {
 
     List<String> currentBeaconUUIDs = new ArrayList<String>();
     public BeaconManager beaconManager;
-    public UUID compareUUID;
+    public String compareUUID;
 
     private boolean userInRange = false;
     int tmpRSSI = -1;
@@ -37,7 +35,7 @@ public class BeaconFinder extends Observable {
         beaconManager.disconnect();
     }
 
-    public void startBeaconSearch(Observer activity, UUID uuid, Context context){
+    public void startBeaconSearch(Observer activity, String uuid, Context context){
         compareUUID = uuid;
 
 
