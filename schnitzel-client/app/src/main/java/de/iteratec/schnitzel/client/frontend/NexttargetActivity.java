@@ -1,6 +1,8 @@
 package de.iteratec.schnitzel.client.frontend;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -16,7 +18,7 @@ import de.iteratec.schnitzel.client.R;
  */
 public class NexttargetActivity extends Activity {
     private ImageView user;
-    private Button up;
+    private Button info;
     private double currentPos = 0.85;
     private int height;
     private int width;
@@ -32,12 +34,24 @@ public class NexttargetActivity extends Activity {
         setContentView(R.layout.activity_nexttarget);
         user = (ImageView) findViewById(R.id.iv_user);
 
-        up = (Button) findViewById(R.id.b_up);
-        up.setOnClickListener(new View.OnClickListener() {
+        info = (Button) findViewById(R.id.b_info);
+
+        final AlertDialog.Builder diag = new AlertDialog.Builder(this);
+        diag.setTitle("Hinweis:");
+        diag.setMessage("TEST");
+        diag.setCancelable(true);
+        diag.setPositiveButton("Okay",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setCurrentPosition(currentPos-0.05);
-                setUserIconPosition(user);
+                AlertDialog alertDiag = diag.create();
+                alertDiag.show();
             }
         });
     }
