@@ -30,6 +30,7 @@ public class NexttargetActivity extends Activity implements Observer{
     private int height;
     private int width;
     private Beacon currentTarget;
+    private BeaconFinder bf;
     private PuzzleStep currentPuzzleStep;
 
     @Override
@@ -43,7 +44,7 @@ public class NexttargetActivity extends Activity implements Observer{
         Intent intent = getIntent();
         currentPuzzleStep = (PuzzleStep) intent.getSerializableExtra(SchnitzelMainActivity.PUZZLESTEP);
         currentTarget = currentPuzzleStep.getBeacon();
-        BeaconFinder bf = new BeaconFinder();
+        bf = new BeaconFinder();
         bf.addObserver(this);
         bf.startBeaconSearch(this, currentTarget.getBeaconUuid(), this);
 
@@ -74,7 +75,11 @@ public class NexttargetActivity extends Activity implements Observer{
 
     private void setUserIconPosition(ImageView view){
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(view.getWidth(), view.getHeight());
-        lp.setMargins(width/2-view.getWidth()/2, (int)(currentPos*height), 0, 0);
+        if(currentPos > 0.85) {
+            currentPos = 0.85;
+        }
+        int newPos = (int)(currentPos*height);
+        lp.setMargins(width/2-view.getWidth()/2, newPos, 0, 0);
         view.setLayoutParams(lp);
     }
 
@@ -84,21 +89,38 @@ public class NexttargetActivity extends Activity implements Observer{
 
     @Override
     public void update(Observable observable, Object o) {
-        double pos = (double) o;
+        double result = new Double(""+o);
+        double pos = (100.0-result)/100.0;
 
-        if (pos != -1){
-            setCurrentPosition(pos/100);
+        if (pos != 0 && pos != -1){
+            setCurrentPosition(pos);
+            setUserIconPosition(user);
 
-            if(currentPos < 0.03 && currentPuzzleStep.getSuccessor() == null) {
+            if(currentPos < 0.6 && currentPuzzleStep.getSuccessor() == null) {
                 // endgültiges ziel erreicht -> letzte seite anzeigen
                 Intent intent = new Intent(this, LetzteSeite.class);
                 startActivity(intent);
                 finish();
-            } else if (currentPos < 0.03) {
+            } else if (currentPos < 0.6) {
                 // zwischenziel erreicht
                 // dialog einblenden mit tipp, wo das nächste ziel ist
                 // currentpos reseten
                 // currenttargetuuid setzen
+                final AlertDialog.Builder diag = new AlertDialog.Builder(this);
+                diag.setTitle("Zwischenziel gefunden!!");
+                diag.setMessage(currentPuzzleStep.getDescription());
+                diag.setCancelable(true);
+                diag.setPositiveButton("Okay",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                currentPuzzleStep = currentPuzzleStep.getSuccessor();
+                                currentTarget = currentPuzzleStep.getBeacon();
+                                bf.startBeaconSearch(NexttargetActivity.this, currentTarget.getBeaconUuid(), getApplicationContext());
+                                dialog.cancel();
+                            }
+                        });
+                bf.stopBeaconSearch();
+                diag.create().show();
             }
         }
     }

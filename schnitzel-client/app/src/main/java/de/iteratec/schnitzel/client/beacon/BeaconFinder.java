@@ -58,7 +58,7 @@ public class BeaconFinder extends Observable {
 
                 for (Beacon b : beacons) {
                     Log.e("TAG-TEST", "Beacon Found:" + b.toString());
-                    if (b.getProximityUUID().equals(compareUUID)) {
+                    if (b.getProximityUUID().toString().toLowerCase().equals(compareUUID.toLowerCase())) {
                         Log.e("TAG-TEST", "Correct Beacon Found");
 
                         beaconFound = true;
