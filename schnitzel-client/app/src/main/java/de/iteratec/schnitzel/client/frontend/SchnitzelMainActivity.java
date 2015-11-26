@@ -25,7 +25,7 @@ public class SchnitzelMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schnitzel_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ArrayList<Puzzle> puzzlelist = testCreateClassesFromCommonProject();
