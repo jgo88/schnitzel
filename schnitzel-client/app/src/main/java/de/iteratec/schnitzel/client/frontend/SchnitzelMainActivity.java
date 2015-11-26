@@ -1,4 +1,4 @@
-package de.iteratec.schnitzel.client;
+package de.iteratec.schnitzel.client.frontend;
 
 import android.content.Intent;
 import android.os.Bundle;
