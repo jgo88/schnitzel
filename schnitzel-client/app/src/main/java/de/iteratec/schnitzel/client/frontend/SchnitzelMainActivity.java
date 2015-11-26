@@ -2,13 +2,10 @@ package de.iteratec.schnitzel.client.frontend;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,7 +15,6 @@ import java.util.concurrent.ExecutionException;
 import de.iteratec.schnitzel.client.R;
 import de.iteratec.schnitzel.client.communication.RESTClient;
 import de.iteratec.schnitzel.common.model.Puzzle;
-import de.iteratec.schnitzel.common.model.PuzzleStep;
 
 public class SchnitzelMainActivity extends AppCompatActivity {
 
@@ -38,7 +34,9 @@ public class SchnitzelMainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         ListView listview = (ListView) findViewById(R.id.listView);
-        listview.setAdapter(new PuzzleAdapter(getApplicationContext(), -1, puzzlelist.toArray(new Puzzle[puzzlelist.size()])));
+        if(puzzlelist != null) {
+            listview.setAdapter(new PuzzleAdapter(getApplicationContext(), -1, puzzlelist.toArray(new Puzzle[puzzlelist.size()])));
+        }
     }
 
 
