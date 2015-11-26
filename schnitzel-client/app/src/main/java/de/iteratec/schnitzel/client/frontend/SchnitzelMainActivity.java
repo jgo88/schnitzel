@@ -1,4 +1,4 @@
-package de.iteratec.schnitzel.client;
+package de.iteratec.schnitzel.client.frontend;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import de.iteratec.schnitzel.client.R;
 import de.iteratec.schnitzel.common.model.Puzzle;
 import de.iteratec.schnitzel.common.model.PuzzleStep;
 
@@ -20,15 +21,6 @@ public class SchnitzelMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schnitzel_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         testCreateClassesFromCommonProject();
     }
