@@ -25,6 +25,8 @@ public class NexttargetActivity extends Activity {
 
     }
 
-    private void draw
+    private void draw(){
+
+    }
 
 }
